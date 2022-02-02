@@ -67,6 +67,9 @@ export default {
       title: "Vuetify.js",
     };
   },
+  mounted() {
+    this.$store.dispatch("news/getNews")
+  },
   computed: {
     miniVariant() {
       switch (this.$vuetify.breakpoint.name) {

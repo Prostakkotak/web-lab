@@ -3,14 +3,23 @@
     <v-autocomplete class="col-xs-12 col-sm-10 col-md-8 px-4" solo rounded dense>
     </v-autocomplete>
     <v-list class="d-flex flex-column col-xs-12 col-sm-10 col-md-8 px-4">
-      <NewsItem v-for="news in this.$store.state.news.newsList"
-    :key="news.id" :newsData=news  />
+      <NewsItem v-for="news in newsList"
+    :key="news.id" :newsData="news"  />
     </v-list>
   </v-row>
 </template>
 
 <script>
+import NewsItem from '../components/NewsItem.vue'
+import {mapState} from "vuex"
 
+export default {
+  name: "newspage",
+  components: {NewsItem},
+  computed: {
+    ...mapState("news", ["newsList"])
+  },
+}
 </script>
 
 <style lang="scss">
@@ -24,11 +33,3 @@
   text-decoration: none;
 }
 </style>
-
-<script>
-import NewsItem from '../components/NewsItem.vue'
-
-export default {
-  components: [NewsItem]
-}
-</script>
